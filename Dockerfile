@@ -1,9 +1,12 @@
-FROM alpine
-LABEL maintainer="Alen Komljen <akomljen.com>"
+FROM alpine:latest
+LABEL maintainer="lihua <tttlkkkl@aliyun.com>"
 
-ENV HELM_VERSION="v2.8.2"
-ENV KUBECTL_VERSION="v1.9.3"
-
+ENV HELM_VERSION="v2.14.3"
+ENV KUBECTL_VERSION="v1.15.3"
+ENV KUBERNETES_TOKEN=
+ENV KUBERNETES_SERVER=
+ENV PLUGIN_KUBECTL="kubectl version"
+ENV PLUGIN_HELM="helm version"
 RUN \
   apk add --update ca-certificates && \
   apk add -t deps curl && \
