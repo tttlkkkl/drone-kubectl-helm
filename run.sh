@@ -13,7 +13,7 @@ if [[ ! -z ${KUBERNETES_CERT} ]]; then
   KUBERNETES_CERT=${KUBERNETES_CERT}
 fi
 
-kubectl config set-credentials default --token=${KUBERNETES_TOKEN}
+kubectl config set-credentials ${USER} --token=${KUBERNETES_TOKEN}
 if [[ ! -z ${KUBERNETES_CERT} ]]; then
   # echo ${KUBERNETES_CERT} | base64 -d >ca.crt
   echo ${KUBERNETES_CERT} >ca.crt
@@ -23,7 +23,7 @@ else
   kubectl config set-cluster default --server=${KUBERNETES_SERVER} --insecure-skip-tls-verify=true
 fi
 
-kubectl config set-context default --cluster=default --user=default
+kubectl config set-context default --cluster=default --user=${USER}
 kubectl config use-context default
 
 # Run kubectl command

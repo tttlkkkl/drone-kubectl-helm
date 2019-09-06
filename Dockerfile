@@ -8,6 +8,7 @@ ENV KUBERNETES_CERT=
 ENV KUBERNETES_SERVER=
 ENV PLUGIN_KUBECTL="version"
 ENV PLUGIN_HELM="version"
+ENV USER="default"
 RUN \
   apk add --update ca-certificates && \
   apk add -t deps curl && \
