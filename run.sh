@@ -17,7 +17,7 @@ doFinish(){
 if [[ ! -z ${KUBECTL_CONFIG} ]]; then
   mkdir ~/.kube
   touch ~/.kube/config
-  echo ${KUBECTL_CONFIG} > ~/.kube/config
+  echo ${KUBECTL_CONFIG} | base64 -d > ~/.kube/config
   doFinish
 fi
 
