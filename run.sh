@@ -1,6 +1,26 @@
 #!/bin/bash
 # Inspired by https://github.com/honestbee/drone-kubernetes/blob/master/update.sh
 
+doFinish(){
+  # Run kubectl command
+  if [[ ! -z ${PLUGIN_KUBECTL} ]]; then
+    kubectl ${PLUGIN_KUBECTL}
+  fi
+
+  # Run helm command
+  if [[ ! -z ${PLUGIN_HELM} ]]; then
+    helm ${PLUGIN_HELM}
+  fi
+  exit 0
+}
+
+if [[ ! -z ${KUBECTL_CONFIG} ]]; then
+  mkdir ~/.kube
+  touch ~/.kube/config
+  echo ${KUBECTL_CONFIG} > ~/.kube/config
+  doFinish
+fi
+
 if [[ ! -z ${KUBERNETES_TOKEN} ]]; then
   KUBERNETES_TOKEN=$KUBERNETES_TOKEN
 fi
@@ -25,13 +45,5 @@ fi
 
 kubectl config set-context default --cluster=default --user=${USER}
 kubectl config use-context default
+doFinish
 
-# Run kubectl command
-if [[ ! -z ${PLUGIN_KUBECTL} ]]; then
-  kubectl ${PLUGIN_KUBECTL}
-fi
-
-# Run helm command
-if [[ ! -z ${PLUGIN_HELM} ]]; then
-  helm ${PLUGIN_HELM}
-fi
