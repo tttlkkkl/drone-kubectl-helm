@@ -27,8 +27,9 @@ RUN \
     https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl && \
   chmod +x /usr/local/bin/kubectl && \
   apk del --purge deps && \
-  rm /var/cache/apk/* \
-  && helm init --client-only --stable-repo-url=https://charts.helm.sh/stable
+  rm /var/cache/apk/* 
+  
+RUN helm init --client-only --stable-repo-url=https://charts.helm.sh/stable
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
