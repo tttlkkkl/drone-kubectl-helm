@@ -15,7 +15,7 @@ RUN \
   apk add -t deps curl && \
   apk add bash
 ADD https://get.helm.sh/helm-v3.5.2-linux-arm64.tar.gz /app/helm/
-RUN ls -lah /app && mv /app/helm/linux-arm64/helm /usr/local/bin/helm && \
+RUN mv /app/helm/helm /usr/local/bin/helm && \
     rm -rf /app
 
 RUN \
