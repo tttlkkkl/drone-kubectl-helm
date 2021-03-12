@@ -18,6 +18,7 @@ if [[ ! -z ${KUBECTL_CONFIG} ]]; then
   mkdir ~/.kube
   touch ~/.kube/config
   echo ${KUBECTL_CONFIG} | base64 -d > ~/.kube/config
+  chmod go-r ~/.kube/config
   doFinish
 fi
 
